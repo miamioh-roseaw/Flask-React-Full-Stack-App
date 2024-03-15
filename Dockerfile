@@ -8,10 +8,10 @@ RUN apt-get -y install \
     python3-dev \
     build-essential
 
-COPY ./requirements.txt ./requirements.txt
+COPY ./backend/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ./main.py ./main.py
+COPY . .
 
 EXPOSE 5000
-CMD [ "python3", "main.py" ]
+CMD [ "python3", "/backend/main.py" ] 
