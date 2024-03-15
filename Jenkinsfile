@@ -5,7 +5,7 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'roseaw-dockerhub'  
         DOCKER_IMAGE = 'cithit/roseaw'                               //<-----change this to your MiamiID!
         IMAGE_TAG = "build-${BUILD_NUMBER}"
-        GITHUB_URL = 'https://github.com/miamioh-roseaw/225-lab3-10.git' //<-----change this to match this new repository!
+        GITHUB_URL = 'https://github.com/miamioh-roseaw/Flask-React-Full-Stack-App.git' //<-----change this to match this new repository!
         KUBECONFIG = credentials('roseaw-225')                           //<-----change this to match your kubernetes credentials (MiamiID-225)!  1 More change on line 63!
     }
 
@@ -15,13 +15,6 @@ pipeline {
                 cleanWs()
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                           userRemoteConfigs: [[url: "${GITHUB_URL}"]]])
-            }
-        }
-
-        stage('Lint HTML') {
-            steps {
-                sh 'npm install htmlhint --save-dev'
-                sh 'npx htmlhint *.html'
             }
         }
 
