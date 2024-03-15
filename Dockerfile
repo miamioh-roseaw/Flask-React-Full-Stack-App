@@ -6,12 +6,13 @@ RUN apt-get clean \
 RUN apt-get -y install \
     nginx \
     python3-dev \
-    build-essential
+    build-essential\
+    sqlite3
 
-COPY ./backend/requirements.txt ./requirements.txt
+COPY ./requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
 
 EXPOSE 5000
-CMD [ "python3", "/backend/main.py" ] 
+CMD [ "python3", "/main.py" ] 
